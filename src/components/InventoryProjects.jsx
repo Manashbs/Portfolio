@@ -39,7 +39,7 @@ export default function InventoryProjects() {
             INVENTORY VAULT // PROJECTS
           </h2>
           <p className="text-xs text-gray-400 font-sans">
-            Directly launch live Web Apps & IEEE Research Papers or inspect detailed case studies.
+            Directly launch live web apps, inspect GitHub repositories, or view detailed case study lore.
           </p>
         </div>
       </div>
@@ -53,7 +53,7 @@ export default function InventoryProjects() {
           return (
             <div
               key={project.id}
-              className="mc-slot group p-4 bg-[#262638] dark:bg-[#262638] light:bg-[#EAE4D3] border-2 border-[#3D3D56] rounded-lg relative flex flex-col justify-between"
+              className="mc-slot group p-5 bg-[#262638] dark:bg-[#262638] light:bg-[#EAE4D3] border-2 border-[#3D3D56] rounded-lg relative flex flex-col justify-between"
             >
               {/* Item Slot Header */}
               <div>
@@ -66,19 +66,23 @@ export default function InventoryProjects() {
                   </span>
                 </div>
 
-                {/* Title */}
-                <h3 className="font-pixel text-xs text-[#F5F0E1] dark:text-[#F5F0E1] light:text-[#1B1B2E] mb-1.5 group-hover:text-[#5DD5E0] transition-colors">
+                {/* Title & Category */}
+                <span className="font-pixel text-[9px] text-[#5D8A3A] uppercase tracking-wide block mb-1">
+                  {project.category}
+                </span>
+                <h3 className="font-pixel text-xs text-[#F5F0E1] dark:text-[#F5F0E1] light:text-[#1B1B2E] mb-2 group-hover:text-[#5DD5E0] transition-colors">
                   {project.title}
                 </h3>
-                <p className="text-xs text-gray-400 dark:text-gray-400 light:text-gray-600 font-sans line-clamp-2 mb-3">
+                <p className="text-xs text-gray-300 dark:text-gray-300 light:text-gray-700 font-sans leading-relaxed mb-4">
                   {project.summary}
                 </p>
               </div>
 
-              {/* Tech Stack Tags */}
+              {/* Bottom Section: Tech Stack + Links */}
               <div>
-                <div className="flex flex-wrap gap-1 mb-4 pt-2 border-t border-[#3D3D56]/50">
-                  {project.tech.slice(0, 3).map((t, idx) => (
+                {/* Tech Stack Pills */}
+                <div className="flex flex-wrap gap-1.5 mb-4 pt-3 border-t border-[#3D3D56]/60">
+                  {project.tech.map((t, idx) => (
                     <span
                       key={idx}
                       className="text-[10px] font-mono bg-[#10101C] text-[#5DD5E0] px-2 py-0.5 rounded border border-[#3D3D56]"
@@ -86,43 +90,44 @@ export default function InventoryProjects() {
                       {t}
                     </span>
                   ))}
-                  {project.tech.length > 3 && (
-                    <span className="text-[10px] text-gray-400 font-mono self-center">
-                      +{project.tech.length - 3}
-                    </span>
-                  )}
                 </div>
 
-                {/* Action Buttons: Direct Live Link + Inspect Modal */}
-                <div className="grid grid-cols-2 gap-2">
-                  {project.liveUrl ? (
+                {/* Action Buttons Row */}
+                <div className="flex flex-wrap gap-2 pt-1">
+                  {/* Direct Live Website Link */}
+                  {project.liveUrl && (
                     <a
                       href={project.liveUrl}
                       target="_blank"
                       rel="noreferrer"
-                      className="inline-flex items-center justify-center gap-1 bg-[#5DD5E0] hover:bg-[#48c2ce] text-[#10101C] font-pixel text-[9px] py-2 px-1 rounded border border-[#36a6b1] transition-transform active:scale-95 font-bold"
+                      className="flex-1 inline-flex items-center justify-center gap-1.5 bg-[#5DD5E0] hover:bg-[#48c2ce] text-[#10101C] font-pixel text-[9px] py-2 px-2 rounded border border-[#36a6b1] transition-transform active:scale-95 font-bold shadow"
                     >
-                      <span>LIVE SITE</span>
+                      <span>LIVE DEMO</span>
                       <ExternalLink className="w-3 h-3" />
                     </a>
-                  ) : (
+                  )}
+
+                  {/* Direct GitHub Repo Link */}
+                  {project.githubUrl && (
                     <a
                       href={project.githubUrl}
                       target="_blank"
                       rel="noreferrer"
-                      className="inline-flex items-center justify-center gap-1 bg-[#262638] hover:bg-[#32324a] text-white font-pixel text-[9px] py-2 px-1 rounded border border-[#3D3D56]"
+                      className="flex-1 inline-flex items-center justify-center gap-1.5 bg-[#10101C] hover:bg-[#1B1B2E] text-white hover:text-[#5DD5E0] font-pixel text-[9px] py-2 px-2 rounded border border-[#3D3D56] transition-colors shadow"
                     >
-                      <span>REPO</span>
-                      <Github className="w-3 h-3" />
+                      <span>GITHUB</span>
+                      <Github className="w-3 h-3 text-[#E5B80B]" />
                     </a>
                   )}
 
+                  {/* Lore / Case Study Modal Trigger */}
                   <button
                     onClick={() => setSelectedProject(project)}
-                    className="inline-flex items-center justify-center gap-1 bg-[#10101C] hover:bg-[#1B1B2E] text-gray-200 hover:text-[#5DD5E0] font-pixel text-[9px] py-2 px-1 rounded border border-[#3D3D56] transition-colors"
+                    className="inline-flex items-center justify-center gap-1 bg-[#262638] hover:bg-[#32324a] text-gray-300 font-pixel text-[9px] py-2 px-2 rounded border border-[#3D3D56] transition-colors"
+                    title="View full case study"
                   >
+                    <BookOpen className="w-3 h-3 text-[#5D8A3A]" />
                     <span>LORE</span>
-                    <BookOpen className="w-3 h-3" />
                   </button>
                 </div>
               </div>
@@ -131,7 +136,7 @@ export default function InventoryProjects() {
         })}
 
         {/* Decorative Empty Crafting Slot */}
-        <div className="mc-slot border-2 border-dashed border-[#3D3D56] bg-[#10101C]/30 p-4 rounded-lg flex flex-col items-center justify-center text-center opacity-60 hover:opacity-100 transition-opacity min-h-[200px]">
+        <div className="mc-slot border-2 border-dashed border-[#3D3D56] bg-[#10101C]/30 p-5 rounded-lg flex flex-col items-center justify-center text-center opacity-60 hover:opacity-100 transition-opacity min-h-[220px]">
           <div className="w-10 h-10 rounded border border-dashed border-gray-600 flex items-center justify-center mb-2">
             <Sparkles className="w-5 h-5 text-gray-500" />
           </div>
@@ -217,7 +222,7 @@ export default function InventoryProjects() {
                     className="inline-flex items-center gap-2 bg-[#262638] hover:bg-[#32324a] text-white font-pixel text-xs px-4 py-2.5 rounded border-2 border-[#3D3D56] transition-transform active:scale-95"
                   >
                     <Github className="w-4 h-4" />
-                    <span>VIEW SOURCE CODE</span>
+                    <span>VIEW GITHUB REPOSITORY</span>
                   </a>
                 )}
               </div>
