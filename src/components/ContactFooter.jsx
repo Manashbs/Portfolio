@@ -24,8 +24,8 @@ export default function ContactFooter() {
 
           {/* Download Resume Diamond Button */}
           <a
-            href="./Manash_Srivastav_Resume.pdf"
-            download="Manash_Srivastav_Resume.pdf"
+            href="./Manas_Srivastav_Resume.pdf"
+            download="Manas_Srivastav_Resume.pdf"
             target="_blank"
             rel="noreferrer"
             className="mc-slot inline-flex items-center gap-2 bg-[#5DD5E0] hover:bg-[#48c2ce] text-[#10101C] font-pixel text-xs px-5 py-3 rounded border-2 border-[#36a6b1] transition-transform active:scale-95 shadow-lg font-bold"

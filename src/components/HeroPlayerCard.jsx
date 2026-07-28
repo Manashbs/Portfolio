@@ -58,8 +58,8 @@ export default function HeroPlayerCard() {
 
               <div className="flex flex-wrap items-center justify-center md:justify-start gap-2">
                 <a
-                  href="./Manash_Srivastav_Resume.pdf"
-                  download="Manash_Srivastav_Resume.pdf"
+                  href="./Manas_Srivastav_Resume.pdf"
+                  download="Manas_Srivastav_Resume.pdf"
                   target="_blank"
                   rel="noreferrer"
                   className="inline-flex items-center gap-1.5 bg-[#5DD5E0] hover:bg-[#48c2ce] text-[#10101C] font-pixel text-[10px] px-3 py-2 rounded border-2 border-[#36a6b1] transition-all hover:scale-105 font-bold"
