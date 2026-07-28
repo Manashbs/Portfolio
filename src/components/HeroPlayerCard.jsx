@@ -1,6 +1,6 @@
 import React from 'react';
 import { RESUME_DATA } from '../data/content';
-import { Shield, Sparkles, Terminal, Award, FileText, Download } from 'lucide-react';
+import { Shield, Sparkles, Terminal, Award, Download } from 'lucide-react';
 
 export default function HeroPlayerCard() {
   const { personal } = RESUME_DATA;
@@ -46,7 +46,7 @@ export default function HeroPlayerCard() {
 
           {/* Details Column */}
           <div className="flex-1 text-center md:text-left space-y-3">
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
+            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-3">
               <div>
                 <h2 className="font-pixel text-xl md:text-3xl text-[#5DD5E0] dark:text-[#5DD5E0] light:text-[#3d6023] leading-tight">
                   {personal.name}
@@ -56,15 +56,28 @@ export default function HeroPlayerCard() {
                 </p>
               </div>
 
-              <a
-                href={personal.socials.github}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-1.5 self-center md:self-auto bg-[#5D8A3A] hover:bg-[#4d752f] text-white font-pixel text-[10px] px-3 py-2 rounded border-2 border-[#3d6023] transition-all hover:scale-105"
-              >
-                <Terminal className="w-3.5 h-3.5" />
-                <span>VIEW GITHUB</span>
-              </a>
+              <div className="flex flex-wrap items-center justify-center md:justify-start gap-2">
+                <a
+                  href="./Manash_Srivastav_Resume.pdf"
+                  download="Manash_Srivastav_Resume.pdf"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-1.5 bg-[#5DD5E0] hover:bg-[#48c2ce] text-[#10101C] font-pixel text-[10px] px-3 py-2 rounded border-2 border-[#36a6b1] transition-all hover:scale-105 font-bold"
+                >
+                  <Download className="w-3.5 h-3.5" />
+                  <span>RESUME PDF</span>
+                </a>
+
+                <a
+                  href={personal.socials.github}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-1.5 bg-[#5D8A3A] hover:bg-[#4d752f] text-white font-pixel text-[10px] px-3 py-2 rounded border-2 border-[#3d6023] transition-all hover:scale-105"
+                >
+                  <Terminal className="w-3.5 h-3.5" />
+                  <span>GITHUB</span>
+                </a>
+              </div>
             </div>
 
             <p className="text-sm text-gray-300 dark:text-gray-300 light:text-gray-700 font-sans leading-relaxed pt-1">

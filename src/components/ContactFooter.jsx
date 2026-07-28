@@ -1,6 +1,6 @@
 import React from 'react';
 import { RESUME_DATA } from '../data/content';
-import { Mail, Phone, Linkedin, Github, Globe, Download, Send, Heart } from 'lucide-react';
+import { Mail, Linkedin, Github, Globe, Download, Heart } from 'lucide-react';
 
 export default function ContactFooter() {
   const { personal } = RESUME_DATA;
@@ -24,13 +24,14 @@ export default function ContactFooter() {
 
           {/* Download Resume Diamond Button */}
           <a
-            href="file:///c:/Users/manas/Downloads/Portfolio-main/Portfolio-main/src/data/content.js"
+            href="./Manash_Srivastav_Resume.pdf"
+            download="Manash_Srivastav_Resume.pdf"
             target="_blank"
             rel="noreferrer"
             className="mc-slot inline-flex items-center gap-2 bg-[#5DD5E0] hover:bg-[#48c2ce] text-[#10101C] font-pixel text-xs px-5 py-3 rounded border-2 border-[#36a6b1] transition-transform active:scale-95 shadow-lg font-bold"
           >
             <Download className="w-4 h-4" />
-            <span>DOWNLOAD RESUME</span>
+            <span>DOWNLOAD RESUME PDF</span>
           </a>
         </div>
 

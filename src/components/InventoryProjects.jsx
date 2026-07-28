@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { RESUME_DATA } from '../data/content';
-import { HeartPulse, FileText, ShieldAlert, Code, Globe, Brain, ExternalLink, Github, X, Package, Sparkles } from 'lucide-react';
+import { HeartPulse, FileText, ShieldAlert, Code, Globe, Brain, ExternalLink, Github, X, Package, Sparkles, BookOpen } from 'lucide-react';
 
 const ICON_MAP = {
   HeartPulse: HeartPulse,
@@ -14,7 +14,6 @@ const ICON_MAP = {
 export default function InventoryProjects() {
   const { projects } = RESUME_DATA;
   const [selectedProject, setSelectedProject] = useState(null);
-  const [hoveredProject, setHoveredProject] = useState(null);
 
   const getRarityColor = (rarity) => {
     switch (rarity) {
@@ -40,13 +39,13 @@ export default function InventoryProjects() {
             INVENTORY VAULT // PROJECTS
           </h2>
           <p className="text-xs text-gray-400 font-sans">
-            Click any item slot to inspect full project lore & case study.
+            Directly launch live Web Apps & IEEE Research Papers or inspect detailed case studies.
           </p>
         </div>
       </div>
 
       {/* Grid of Item Slots */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {projects.map((project) => {
           const IconComponent = ICON_MAP[project.icon] || Code;
           const rarityStyle = getRarityColor(project.rarity);
@@ -54,12 +53,9 @@ export default function InventoryProjects() {
           return (
             <div
               key={project.id}
-              onClick={() => setSelectedProject(project)}
-              onMouseEnter={() => setHoveredProject(project)}
-              onMouseLeave={() => setHoveredProject(null)}
-              className="mc-slot group cursor-pointer p-4 bg-[#262638] dark:bg-[#262638] light:bg-[#EAE4D3] border-2 border-[#3D3D56] rounded-lg relative flex flex-col justify-between"
+              className="mc-slot group p-4 bg-[#262638] dark:bg-[#262638] light:bg-[#EAE4D3] border-2 border-[#3D3D56] rounded-lg relative flex flex-col justify-between"
             >
-              {/* Item Slot Top Bar */}
+              {/* Item Slot Header */}
               <div>
                 <div className="flex items-center justify-between mb-3">
                   <div className="w-10 h-10 bg-[#10101C] border-2 border-[#5DD5E0]/50 rounded flex items-center justify-center group-hover:border-[#5DD5E0] transition-colors">
@@ -70,7 +66,8 @@ export default function InventoryProjects() {
                   </span>
                 </div>
 
-                <h3 className="font-pixel text-xs text-[#F5F0E1] dark:text-[#F5F0E1] light:text-[#1B1B2E] mb-1 group-hover:text-[#5DD5E0] transition-colors line-clamp-1">
+                {/* Title */}
+                <h3 className="font-pixel text-xs text-[#F5F0E1] dark:text-[#F5F0E1] light:text-[#1B1B2E] mb-1.5 group-hover:text-[#5DD5E0] transition-colors">
                   {project.title}
                 </h3>
                 <p className="text-xs text-gray-400 dark:text-gray-400 light:text-gray-600 font-sans line-clamp-2 mb-3">
@@ -79,32 +76,67 @@ export default function InventoryProjects() {
               </div>
 
               {/* Tech Stack Tags */}
-              <div className="flex flex-wrap gap-1 mt-2 pt-2 border-t border-[#3D3D56]/50">
-                {project.tech.slice(0, 3).map((t, idx) => (
-                  <span
-                    key={idx}
-                    className="text-[10px] font-mono bg-[#10101C] dark:bg-[#10101C] light:bg-[#D5CDB5] text-[#5DD5E0] px-2 py-0.5 rounded border border-[#3D3D56]"
+              <div>
+                <div className="flex flex-wrap gap-1 mb-4 pt-2 border-t border-[#3D3D56]/50">
+                  {project.tech.slice(0, 3).map((t, idx) => (
+                    <span
+                      key={idx}
+                      className="text-[10px] font-mono bg-[#10101C] text-[#5DD5E0] px-2 py-0.5 rounded border border-[#3D3D56]"
+                    >
+                      {t}
+                    </span>
+                  ))}
+                  {project.tech.length > 3 && (
+                    <span className="text-[10px] text-gray-400 font-mono self-center">
+                      +{project.tech.length - 3}
+                    </span>
+                  )}
+                </div>
+
+                {/* Action Buttons: Direct Live Link + Inspect Modal */}
+                <div className="grid grid-cols-2 gap-2">
+                  {project.liveUrl ? (
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center justify-center gap-1 bg-[#5DD5E0] hover:bg-[#48c2ce] text-[#10101C] font-pixel text-[9px] py-2 px-1 rounded border border-[#36a6b1] transition-transform active:scale-95 font-bold"
+                    >
+                      <span>LIVE SITE</span>
+                      <ExternalLink className="w-3 h-3" />
+                    </a>
+                  ) : (
+                    <a
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center justify-center gap-1 bg-[#262638] hover:bg-[#32324a] text-white font-pixel text-[9px] py-2 px-1 rounded border border-[#3D3D56]"
+                    >
+                      <span>REPO</span>
+                      <Github className="w-3 h-3" />
+                    </a>
+                  )}
+
+                  <button
+                    onClick={() => setSelectedProject(project)}
+                    className="inline-flex items-center justify-center gap-1 bg-[#10101C] hover:bg-[#1B1B2E] text-gray-200 hover:text-[#5DD5E0] font-pixel text-[9px] py-2 px-1 rounded border border-[#3D3D56] transition-colors"
                   >
-                    {t}
-                  </span>
-                ))}
-                {project.tech.length > 3 && (
-                  <span className="text-[10px] text-gray-400 font-mono self-center">
-                    +{project.tech.length - 3}
-                  </span>
-                )}
+                    <span>LORE</span>
+                    <BookOpen className="w-3 h-3" />
+                  </button>
+                </div>
               </div>
             </div>
           );
         })}
 
         {/* Decorative Empty Crafting Slot */}
-        <div className="mc-slot border-2 border-dashed border-[#3D3D56] bg-[#10101C]/30 p-4 rounded-lg flex flex-col items-center justify-center text-center opacity-60 hover:opacity-100 transition-opacity">
+        <div className="mc-slot border-2 border-dashed border-[#3D3D56] bg-[#10101C]/30 p-4 rounded-lg flex flex-col items-center justify-center text-center opacity-60 hover:opacity-100 transition-opacity min-h-[200px]">
           <div className="w-10 h-10 rounded border border-dashed border-gray-600 flex items-center justify-center mb-2">
             <Sparkles className="w-5 h-5 text-gray-500" />
           </div>
           <span className="font-pixel text-[10px] text-gray-500">CRAFTING SLOT</span>
-          <span className="text-xs text-gray-600 font-sans mt-0.5">Next AI Research Project</span>
+          <span className="text-xs text-gray-600 font-sans mt-0.5">Next AI Project Coming Soon</span>
         </div>
       </div>
 
@@ -174,7 +206,7 @@ export default function InventoryProjects() {
                     className="inline-flex items-center gap-2 bg-[#5DD5E0] hover:bg-[#4bc2cd] text-[#10101C] font-pixel text-xs px-4 py-2.5 rounded border-2 border-[#3aaab4] transition-transform active:scale-95 font-semibold"
                   >
                     <ExternalLink className="w-4 h-4" />
-                    <span>LAUNCH PROJECT / PAPER</span>
+                    <span>LAUNCH LIVE WEBSITE</span>
                   </a>
                 )}
                 {selectedProject.githubUrl && (
