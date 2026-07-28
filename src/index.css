@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply transition-colors duration-200;
+  }
+}
+
+/* Custom Minecraft UI Block Utilities */
+.mc-block {
+  border-radius: 4px;
+  box-shadow: inset -2px -2px 0px rgba(0, 0, 0, 0.2), inset 2px 2px 0px rgba(255, 255, 255, 0.15);
+}
+
+.mc-slot {
+  border-radius: 4px;
+  border-width: 2px;
+  transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.dark .mc-slot {
+  background-color: #262638;
+  border-color: #3D3D56;
+}
+
+.light .mc-slot, html:not(.dark) .mc-slot {
+  background-color: #EAE4D3;
+  border-color: #C8C0A8;
+}
+
+.mc-slot:hover {
+  transform: translateY(-2px);
+  border-color: #5DD5E0 !important;
+}
+
+/* Tooltip aesthetic */
+.mc-tooltip {
+  background-color: #10101C;
+  border: 2px solid #5DD5E0;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #1B1B2E;
+}
+.light ::-webkit-scrollbar-track {
+  background: #F5F0E1;
+}
+::-webkit-scrollbar-thumb {
+  background: #5D8A3A;
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #5DD5E0;
+}
